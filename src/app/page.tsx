@@ -4,6 +4,7 @@ import { appInfo } from "@/constant/app";
 import { imageResizeToBase64 } from "@/utils/image_compress";
 import { joinString } from "@/utils/lib";
 import axios from "axios";
+import { enqueueSnackbar } from "notistack";
 import { ChangeEvent, useCallback, useEffect, useState } from "react";
 import { useDropzone } from "react-dropzone";
 
@@ -81,15 +82,22 @@ export default function Home() {
         const data = { image: images[0], ...formData };
         const res = await axios.post("/api/ai", data);
         setData(() => ({ ...res.data, isLoading: false }));
+        enqueueSnackbar("Congrats ! Successfully generate !", {
+          variant: "success",
+        });
       } catch (error) {
         // toast
-        console.log(error);
+        enqueueSnackbar("Request error something wrong !", {
+          variant: "error",
+        });
       }
     } else {
       // toast
+      enqueueSnackbar("Missing API key or Image !", {
+        variant: "error",
+      });
     }
   }
-
   return (
     <div className="container ">
       <h1 className="mb-4 text-2xl text-center my-5 font-extrabold text-gray-900 dark:text-white md:text-2xl  ">
@@ -119,7 +127,10 @@ export default function Home() {
               <input
                 value={formData.apiKey}
                 onChange={(e) => handleInput(e, "KEY")}
-                className="shadow  appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                className={joinString([
+                  formData.apiKey ? "border-gray-300" : "border-red-500",
+                  "block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
+                ])}
                 type="text"
                 placeholder="Gemini API Key"
               />
