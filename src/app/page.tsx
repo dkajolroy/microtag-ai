@@ -130,6 +130,7 @@ export default function Home() {
         <span className="text-transparent ms-2 bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
           {appInfo.appName}
         </span>
+        <span className="text-xs"> v{appInfo.version}</span>
       </h1>
       <hr />
       <div className="grid lg:grid-cols-2 gap-5 my-5">
@@ -137,7 +138,7 @@ export default function Home() {
           <div className="grid gap-2 sm:grid-cols-4 ">
             <div className="sm:col-span-3 col-span-4">
               <label
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-700 dark:text-gray-400 text-sm font-bold mb-2"
                 htmlFor="password"
               >
                 Gemini API Key
@@ -162,7 +163,7 @@ export default function Home() {
             </div>
             <div className="sm:col-span-1 col-span-4">
               <label
-                className="block text-gray-700 text-sm font-bold mb-2"
+                className="block text-gray-700  dark:text-gray-400 text-sm font-bold mb-2"
                 htmlFor="password"
               >
                 Number of tags
@@ -245,7 +246,16 @@ export default function Home() {
               type="button"
               className="col-span-2 gap-1 text-white bg-gradient-to-r  from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 font-medium rounded-lg px-5 py-2.5 inline-flex items-center justify-center"
             >
-              {data.isLoading && <LoadingIcon />}Generate
+              {data.isLoading ? (
+                <>
+                  <span className="h-4 w-4 animate-spin">
+                    <LoadingIcon />
+                  </span>
+                  Generating...
+                </>
+              ) : (
+                <>Generate</>
+              )}
             </button>
             <button
               onClick={clear}

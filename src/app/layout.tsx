@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
         <ToastProvider>{children}</ToastProvider>
-        <div className="h-20 flex justify-center flex-col items-center p-2 bg-gray-200">
+        <div className="h-20 flex justify-center flex-col items-center p-2 bg-gray-200 dark:bg-gray-800">
           <p className="text-sm">
             © Copyright {new Date().getFullYear()}. All Rights Reserved.
             <a
