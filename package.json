@@ -11,6 +11,7 @@
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
     "axios": "^1.7.9",
+    "copy-to-clipboard": "^3.3.3",
     "next": "14.2.16",
     "notistack": "^3.0.1",
     "react": "^18",

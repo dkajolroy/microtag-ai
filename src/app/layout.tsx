@@ -1,19 +1,12 @@
 import ToastProvider from "@/provider/toastProvider";
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
+const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
 });
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
-
 export const metadata: Metadata = {
   title: "Microtag ai",
   description:
@@ -27,10 +20,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${inter.className} antialiased`}>
         <ToastProvider>{children}</ToastProvider>
+        <div className="h-20 flex justify-center flex-col items-center p-2 bg-gray-200">
+          <p className="text-sm">
+            © Copyright {new Date().getFullYear()}. All Rights Reserved.
+            <a
+              target="_blank"
+              href="https://www.facebook.com/dkajolroy"
+              className="text-blue-500 hover:text-blue-700 underline"
+            >
+              {" "}
+              Developer
+            </a>
+          </p>
+        </div>
       </body>
     </html>
   );
