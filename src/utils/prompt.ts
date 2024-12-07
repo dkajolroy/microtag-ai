@@ -10,7 +10,8 @@ export function imageToPrompt({ tag }: ImageToP) {
   Don't use [free] word and don't use colon mark. 
   Information type [silhouette vector, vector art or normal photos ] related but detect you automatically. 
   Image type [icon, design, art, illustration or normal photos] detect you automatically 
-  If you detect image object is vector illustration and black color, so please use silhouette word in the title and description in any position.
-`;
+  If you detect image object is vector illustration with only black color object, so please use silhouette word in the title and description in any position.
+  If you detect image object is vector illustration with multi color, so don't use silhouette word in the title and description
+ `;
   return prompt;
 }
