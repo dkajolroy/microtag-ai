@@ -147,7 +147,7 @@ export default function Home() {
                   className="text-blue-500 ms-2 underline"
                   href="https://aistudio.google.com/app/apikey"
                 >
-                  Your key
+                  Create key
                 </a>
               </label>
               <input
