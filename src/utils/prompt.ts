@@ -5,7 +5,7 @@ export function imageToPrompt({ tag }: ImageToP) {
   const prompt = `
   Give me SEO title minimum 6 word and up to [150] character without any symbol, 
   SEO description up to [300] character and 
-  SEO tags single word, small letter and number of [${tag}] tags from this image. 
+  [${tag}] SEO tags single word, small letter from this image. 
   But the result only title, description and tags without any other text  or other suggestions. 
   Don't use [free] word and don't use colon mark. 
   Information type [silhouette vector, vector art or normal photos ] related but detect you automatically. 
