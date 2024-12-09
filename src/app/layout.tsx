@@ -1,4 +1,4 @@
-import TopHeader from "@/component/heading/topHeader";
+import TopHeader from "@/components/heading/topHeader";
 import ToastProvider from "@/provider/toastProvider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";

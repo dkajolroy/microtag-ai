@@ -121,6 +121,7 @@ export default function Home() {
       autoHideDuration: 1500,
     });
   }
+
   return (
     <div className="container ">
       <div className="grid lg:grid-cols-2 gap-5 ">
@@ -265,6 +266,7 @@ export default function Home() {
         <div className="grid ">
           <div>
             <h2 className="font-bold text-center text-xl">Result</h2>
+
             <hr className="my-2" />
             <div>
               <label
