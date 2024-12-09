@@ -1,6 +1,5 @@
 "use client";
 
-import { appInfo } from "@/constant/app";
 import {
   CloseIcon,
   FileCopyIcon,
@@ -124,29 +123,26 @@ export default function Home() {
   }
   return (
     <div className="container ">
-      <h1 className="mb-4 text-2xl text-center my-5 font-extrabold text-gray-900 dark:text-white md:text-2xl  ">
-        Free photo tags by
-        <span className="text-transparent ms-2 bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
-          {appInfo.appName}
-        </span>
-        <span className="text-xs"> v{appInfo.version}</span>
-      </h1>
-      <hr />
-      <div className="grid lg:grid-cols-2 gap-5 my-5">
+      <div className="grid lg:grid-cols-2 gap-5 ">
         <div>
+          <h2 className="font-bold text-center text-xl">Upload Image</h2>
+          <hr className="my-2" />
           <div className="grid gap-2 sm:grid-cols-4 ">
             <div className="sm:col-span-3 col-span-4">
               <label
                 className="block text-gray-700 dark:text-gray-400 text-sm font-bold mb-2"
                 htmlFor="password"
               >
-                Gemini API Key
+                API Key
                 <a
                   target="_blank"
-                  className="text-blue-500 ms-2 underline"
+                  className="text-blue-500 ms-2 "
                   href="https://aistudio.google.com/app/apikey"
                 >
-                  Create key
+                  <span className="underline">Create key</span>
+                  <span className="bg-green-100 text-green-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-green-900 dark:text-green-300">
+                    Free
+                  </span>
                 </a>
               </label>
               <input
@@ -157,7 +153,7 @@ export default function Home() {
                   "block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border  focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500",
                 ])}
                 type="text"
-                placeholder="Gemini API Key"
+                placeholder="Enter API Key"
               />
             </div>
             <div className="sm:col-span-1 col-span-4">
@@ -268,80 +264,84 @@ export default function Home() {
         </div>
         <div className="grid ">
           <div>
-            <label
-              htmlFor="message"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Title
-            </label>
-            <div className="flex">
-              <input
-                readOnly
-                value={data.title.trim()}
-                className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-l-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Waiting to generate title..."
-              />
-              <button
-                onClick={() => copyClipBoard("TITLE")}
-                type="button"
-                className="inline-flex transition-all items-center px-3 text-sm text-gray-900 hover:bg-gray-700 hover:border-gray-700 bg-gray-500 border rounded-e-0 border-gray-500 border-e-0 rounded-e-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600"
+            <h2 className="font-bold text-center text-xl">Result</h2>
+            <hr className="my-2" />
+            <div>
+              <label
+                htmlFor="message"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                <span className="w-8 flex">
-                  <FileCopyIcon />
-                </span>
-              </button>
+                Title
+              </label>
+              <div className="flex">
+                <input
+                  readOnly
+                  value={data.title.trim()}
+                  className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-l-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Waiting to generate title..."
+                />
+                <button
+                  onClick={() => copyClipBoard("TITLE")}
+                  type="button"
+                  className="inline-flex transition-all items-center px-3 text-sm text-gray-900 hover:bg-gray-700 hover:border-gray-700 bg-gray-500 border rounded-e-0 border-gray-500 border-e-0 rounded-e-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600"
+                >
+                  <span className="w-8 flex">
+                    <FileCopyIcon />
+                  </span>
+                </button>
+              </div>
             </div>
-          </div>
-          <div>
-            <label
-              htmlFor="message"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Description
-            </label>
-            <div className="flex">
-              <textarea
-                rows={4}
-                readOnly
-                value={data.description.trim()}
-                className="block resize-none p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-l-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Waiting to generate description..."
-              ></textarea>
-              <button
-                onClick={() => copyClipBoard("DESC")}
-                type="button"
-                className="inline-flex transition-all items-center px-3 text-sm text-gray-900 hover:bg-gray-700 hover:border-gray-700 bg-gray-500 border rounded-e-0 border-gray-500 border-e-0 rounded-e-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600"
+            <div>
+              <label
+                htmlFor="message"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                <span className="w-8 flex">
-                  <FileCopyIcon />
-                </span>
-              </button>
+                Description
+              </label>
+              <div className="flex">
+                <textarea
+                  rows={4}
+                  readOnly
+                  value={data.description.trim()}
+                  className="block resize-none p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-l-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Waiting to generate description..."
+                ></textarea>
+                <button
+                  onClick={() => copyClipBoard("DESC")}
+                  type="button"
+                  className="inline-flex transition-all items-center px-3 text-sm text-gray-900 hover:bg-gray-700 hover:border-gray-700 bg-gray-500 border rounded-e-0 border-gray-500 border-e-0 rounded-e-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600"
+                >
+                  <span className="w-8 flex">
+                    <FileCopyIcon />
+                  </span>
+                </button>
+              </div>
             </div>
-          </div>
-          <div>
-            <label
-              htmlFor="message"
-              className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-            >
-              Tags
-            </label>
-            <div className="flex">
-              <textarea
-                rows={4}
-                readOnly
-                value={data.tags}
-                className="block resize-none p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-l-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Waiting to generate tags..."
-              ></textarea>
-              <button
-                onClick={() => copyClipBoard("TAG")}
-                type="button"
-                className="inline-flex transition-all items-center px-3 text-sm text-gray-900 hover:bg-gray-700 hover:border-gray-700 bg-gray-500 border rounded-e-0 border-gray-500 border-e-0 rounded-e-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600"
+            <div>
+              <label
+                htmlFor="message"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
               >
-                <span className="w-8 flex">
-                  <FileCopyIcon />
-                </span>
-              </button>
+                Tags
+              </label>
+              <div className="flex">
+                <textarea
+                  rows={4}
+                  readOnly
+                  value={data.tags}
+                  className="block resize-none p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-l-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Waiting to generate tags..."
+                ></textarea>
+                <button
+                  onClick={() => copyClipBoard("TAG")}
+                  type="button"
+                  className="inline-flex transition-all items-center px-3 text-sm text-gray-900 hover:bg-gray-700 hover:border-gray-700 bg-gray-500 border rounded-e-0 border-gray-500 border-e-0 rounded-e-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600"
+                >
+                  <span className="w-8 flex">
+                    <FileCopyIcon />
+                  </span>
+                </button>
+              </div>
             </div>
           </div>
         </div>

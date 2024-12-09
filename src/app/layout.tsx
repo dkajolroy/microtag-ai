@@ -1,3 +1,4 @@
+import TopHeader from "@/component/heading/topHeader";
 import ToastProvider from "@/provider/toastProvider";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
@@ -21,19 +22,22 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} antialiased`}>
-        <ToastProvider>{children}</ToastProvider>
-        <div className="h-20 flex justify-center flex-col items-center p-2 bg-gray-200 dark:bg-gray-800">
-          <p className="text-sm">
-            © Copyright {new Date().getFullYear()}. All Rights Reserved.{" "}
-            <a
-              target="_blank"
-              href="https://www.facebook.com/dkajolroy"
-              className="text-blue-500 hover:text-blue-700 underline"
-            >
-              Developer
-            </a>
-          </p>
-        </div>
+        <ToastProvider>
+          <TopHeader />
+          {children}
+          <div className="h-20 flex justify-center flex-col items-center p-2 bg-gray-200 dark:bg-gray-800">
+            <p className="text-sm">
+              © Copyright {new Date().getFullYear()}. All Rights Reserved.{" "}
+              <a
+                target="_blank"
+                href="https://www.facebook.com/dkajolroy"
+                className="text-blue-500 hover:text-blue-700 underline"
+              >
+                Developer
+              </a>
+            </p>
+          </div>
+        </ToastProvider>
       </body>
     </html>
   );
