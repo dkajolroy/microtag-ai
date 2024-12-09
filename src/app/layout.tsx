@@ -8,7 +8,7 @@ const inter = Inter({
   display: "swap",
 });
 export const metadata: Metadata = {
-  title: "Microtag ai",
+  title: "Microtag AI",
   description:
     "Free Photo tag generate with Microtag AI. Enhance your microstock profile, photo tagging and any other work just simple.",
 };
@@ -24,13 +24,12 @@ export default function RootLayout({
         <ToastProvider>{children}</ToastProvider>
         <div className="h-20 flex justify-center flex-col items-center p-2 bg-gray-200 dark:bg-gray-800">
           <p className="text-sm">
-            © Copyright {new Date().getFullYear()}. All Rights Reserved.
+            © Copyright {new Date().getFullYear()}. All Rights Reserved.{" "}
             <a
               target="_blank"
               href="https://www.facebook.com/dkajolroy"
               className="text-blue-500 hover:text-blue-700 underline"
             >
-              {" "}
               Developer
             </a>
           </p>

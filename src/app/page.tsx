@@ -47,7 +47,6 @@ export default function Home() {
       localStorage.setItem("key", value);
       setFormData((x) => ({ ...x, apiKey: value }));
     } else {
-      console.log(value);
       localStorage.setItem("tags", value);
       setFormData((x) => ({ ...x, numberOfTags: parseInt(value) }));
     }

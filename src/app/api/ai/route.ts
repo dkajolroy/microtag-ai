@@ -27,9 +27,9 @@ export async function POST(request: Request) {
     const result = await model.generateContent([prompt, imageConfig]);
 
     const splitRes = result.response.text().split("\n\n");
-    const title = splitRes[0].split("**Title:**")[1];
-    const description = splitRes[1].split("**Description:**")[1];
-    const tags = splitRes[2].split("**Tags:**")[1].split(",");
+    const title = splitRes[0].split("**Title:**")[1].trim();
+    const description = splitRes[1].split("**Description:**")[1].trim();
+    const tags = splitRes[2].split("**Tags:**")[1].trim().split(",");
     const data = { title, description, tags };
     return NextResponse.json(data);
   } catch (error) {
