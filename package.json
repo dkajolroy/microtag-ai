@@ -10,14 +10,19 @@
   },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
+    "@reduxjs/toolkit": "^2.5.0",
     "axios": "^1.7.9",
     "copy-to-clipboard": "^3.3.3",
     "next": "14.2.16",
     "notistack": "^3.0.1",
     "react": "^18",
+    "react-custom-scroll": "^7.0.0",
     "react-dom": "^18",
     "react-dropzone": "^14.3.5",
-    "react-image-file-resizer": "^0.4.8"
+    "react-image-file-resizer": "^0.4.8",
+    "react-redux": "^9.2.0",
+    "redux-persist": "^6.0.0",
+    "redux-persist-transform-encrypt": "^5.1.1"
   },
   "devDependencies": {
     "@types/node": "^20",
