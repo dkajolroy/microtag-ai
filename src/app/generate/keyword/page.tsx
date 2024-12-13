@@ -49,8 +49,11 @@ export default function Keyword() {
         dispatch(handleGenerateLoading(true));
         const data = { images, numberOfTag, apiKey };
         const res = await axios.post("/api/ai/keyword", data);
-        console.log(res.data);
         dispatch(handleResult(res.data));
+        window.scrollTo({
+          top: document.documentElement.scrollHeight,
+          behavior: "smooth",
+        });
         enqueueSnackbar("Congrats ! Successfully generate !", {
           variant: "success",
           autoHideDuration: 2000,
