@@ -46,14 +46,14 @@ export default function Keyword() {
       });
     } else {
       try {
-        dispatch(handleGenerateLoading(true));
-        const data = { images, numberOfTag, apiKey };
-        const res = await axios.post("/api/ai/keyword", data);
-        dispatch(handleResult(res.data));
         window.scrollTo({
           top: document.documentElement.scrollHeight,
           behavior: "smooth",
         });
+        dispatch(handleGenerateLoading(true));
+        const data = { images, numberOfTag, apiKey };
+        const res = await axios.post("/api/ai/keyword", data);
+        dispatch(handleResult(res.data));
         enqueueSnackbar("Congrats ! Successfully generate !", {
           variant: "success",
           autoHideDuration: 2000,
