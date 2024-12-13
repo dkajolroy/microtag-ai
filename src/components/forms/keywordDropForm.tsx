@@ -1,6 +1,6 @@
 "use client";
 import { CloseIcon, LoadingIcon, UploadIcon } from "@/constant/icons";
-import { handleClear } from "@/slices/keywordImageSlice";
+import { handleClear, handleImageRemove } from "@/slices/keywordImageSlice";
 import { handleInputChange } from "@/slices/keywordInputSlice";
 import { RootState } from "@/store";
 import { joinString } from "@/utils/lib";
@@ -22,7 +22,7 @@ export default function KeywordDropForm(props: Props) {
     dispatch(handleInputChange({ value, type }));
   }
   const keyData = useSelector((state: RootState) => state.keywordInput);
-  const { images, isGenerateLoading } = useSelector(
+  const { images, isGenerateLoading, isImgResizeLoading } = useSelector(
     (state: RootState) => state.keywordImage
   );
   const { apiKey, numberOfTag } = keyData;
@@ -30,6 +30,9 @@ export default function KeywordDropForm(props: Props) {
   // clear input and response
   function clear() {
     dispatch(handleClear());
+  }
+  function removeImage(value: number) {
+    dispatch(handleImageRemove(value));
   }
   return (
     <Fragment>
@@ -100,10 +103,10 @@ export default function KeywordDropForm(props: Props) {
               className={joinString([
                 isDragActive ? "bg-blue-200" : "bg-gray-50",
                 !images.length ? "justify-center" : "",
-                "min-h-[calc(80vh-200px)] p-2 flex flex-col  w-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer  dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 ",
+                "min-h-[calc(80vh-200px)] relative p-2 flex flex-col  w-full border-2 border-gray-300 border-dashed rounded-lg cursor-pointer  dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 ",
               ])}
             >
-              {!images.length ? (
+              {!images.length && !isImgResizeLoading ? (
                 // Upload icon
                 <div className="flex flex-col items-center justify-center pt-5 pb-6">
                   <span className="w-10 text-gray-500">
@@ -119,19 +122,39 @@ export default function KeywordDropForm(props: Props) {
                 </div>
               ) : (
                 // Image gallery
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5  gap-2">
+                <div className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-2">
                   {images.map((img, index) => (
-                    <div key={index}>
+                    <div
+                      onClick={(e) => e.stopPropagation()}
+                      key={index}
+                      className="relative"
+                    >
                       <img
                         className="h-full max-h-[50vh] max-w-full object-cover rounded-lg"
                         src={img}
                         alt="image"
                       />
+                      <button
+                        onClick={() => removeImage(index)}
+                        className="absolute top-0 right-0 z-10 bg-opacity-40 bg-black flex justify-center items-center rounded w-5 h-5"
+                      >
+                        <CloseIcon />
+                      </button>
                     </div>
                   ))}
                 </div>
               )}
 
+              <div
+                className={joinString([
+                  "absolute bg-black rounded-lg bg-opacity-20 w-full h-full top-0 left-0  justify-center items-center z-20",
+                  isImgResizeLoading ? "flex" : "hidden",
+                ])}
+              >
+                <span className="h-14 w-14 me-1 animate-spin">
+                  <LoadingIcon />
+                </span>
+              </div>
               {/* File Input */}
               <input
                 {...getInputProps()}

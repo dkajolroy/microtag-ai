@@ -28,12 +28,11 @@ export async function POST(request: Request) {
       ...dataConfig,
       keywordPrompt({ tag: totalTag }),
     ]);
-
-    const extractResult = result.response
-      .text()
-      .split("```")[1]
-      .split("json")[1];
-    const data = JSON.parse(extractResult);
+    const text = result.response.text();
+    const cleanedData = text
+      .replace("```json", "") // Remove the opening part
+      .replace("```", ""); // Remove the closing part
+    const data = JSON.parse(cleanedData);
     return Response.json(data);
   } catch (error) {
     return NextResponse.json(

@@ -16,13 +16,14 @@ export function imageToPrompt({ tag }: ImageToP) {
   return prompt;
 }
 
+// multi
 export function keywordPrompt({ tag }: { tag: number }) {
   const dd = `
-  Generate a array of object json data. Object key is title, description and tags.
-  Detect images to automatically fill up titles, descriptions and tags SEO friendly.
+  Generate a JSON array without variables. Object key is title, description and tags. 
+  Detect image one by one automatically fill up titles, descriptions and tags SEO friendly.
   Title must be more than 8 words but Don't use [free] word and don't use colon mark. 
-  Not give past title again. And ${tag} SEO tags single word and small letter must.
-  Detect image type (transparent, vector, illustration, raster, art ) And Image object (position, situation, capture mode, quality ) etc.
+  Not give past title again And ${tag} SEO tags single word and small letter must.
+  Detect image for relevant all information. (logo, art, silhouette, wallpaper, mockup, transparent, vector, illustration, raster ) And Image object (position, situation, capture mode, quality, weather, light ) etc.
   If you detect image object is black and if it is illustration file so please use silhouette word in the title description.
   If you detect image object is no black, so don't use silhouette word in the title and description.
 

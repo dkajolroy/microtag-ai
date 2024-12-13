@@ -1,11 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface Result {
-  title: string;
-  tags: string[];
-  description: string;
-}
-
 interface Init {
   isImgResizeLoading: boolean;
   isGenerateLoading: boolean;
@@ -34,6 +28,14 @@ const keywordImageSlice = createSlice({
     handleGenerateLoading(state, { payload }: PayloadAction<boolean>) {
       state.isGenerateLoading = payload;
     },
+    handleImageRemove(state, { payload }: PayloadAction<number>) {
+      const removedImage = state.images.filter((_, index) => index !== payload);
+      const removedResult = state.result.filter(
+        (_, index) => index !== payload
+      );
+      state.images = removedImage;
+      state.result = removedResult;
+    },
     handleDropChange(state, { payload }: PayloadAction<string[]>) {
       // changes input value to persist
       const arr = state.images.concat(payload);
@@ -55,6 +57,8 @@ export const {
   handleResult,
   handleClear,
   handleResizeLoading,
+
   handleGenerateLoading,
+  handleImageRemove,
 } = keywordImageSlice.actions;
 export default keywordImageSlice.reducer;
