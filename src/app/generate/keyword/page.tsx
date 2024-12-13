@@ -7,12 +7,10 @@ import {
   handleDropChange,
   handleGenerateLoading,
   handleResizeLoading,
-  handleResult,
 } from "@/slices/keywordImageSlice";
 import { RootState } from "@/store";
 import { imageResizeToBase64 } from "@/utils/image_compress";
 import { joinString } from "@/utils/lib";
-import axios from "axios";
 import { enqueueSnackbar } from "notistack";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -45,15 +43,18 @@ export default function Keyword() {
         variant: "error",
       });
     } else {
-      try {
+      setTimeout(() => {
+        var pageHeight = window.innerHeight;
         window.scrollTo({
-          top: document.documentElement.scrollHeight,
+          top: pageHeight - 50,
           behavior: "smooth",
         });
+      }, 500);
+      try {
         dispatch(handleGenerateLoading(true));
         const data = { images, numberOfTag, apiKey };
-        const res = await axios.post("/api/ai/keyword", data);
-        dispatch(handleResult(res.data));
+        // const res = await axios.post("/api/ai/keyword", data);
+        // dispatch(handleResult(res.data));
         enqueueSnackbar("Congrats ! Successfully generate !", {
           variant: "success",
           autoHideDuration: 2000,
