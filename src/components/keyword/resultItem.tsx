@@ -23,7 +23,7 @@ export default function ResultItem({ item, index }: Props) {
 
   return (
     <Fragment>
-      <div className="grid border p-5 gap-1 mb-5 bg-gray-200 rounded-md">
+      <div className="grid border dark:border-gray-500  border-gray-300 p-5 gap-1 mb-5 bg-gray-200 dark:bg-gray-900 rounded-md">
         <div className="grid grid-cols-5 gap-1">
           <div className="sm:col-span-1 col-span-5">
             <img
